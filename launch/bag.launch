@@ -1,15 +1,20 @@
 <?xml version="1.0"?>
 <launch>
 
+    <arg name = "use_sim_time" default = "true"/>
+    <arg name = "file" default = "glennan_5_basic_short.bag"/>
+    <arg name = "rviz_config_file" default = "config.rviz"/>
+
     <!-- Use launch from lab 2 package -->
     <include file = "$(find navvis_description)/launch/display.launch">
         <arg name = "file" default = "$(find navvis_bag)/urdf/bag.xacro" />
         <arg name = "use_xacro" default = "true"/>
         <arg name = "use_robot_state_publisher" default = "true" />
-        <arg name="use_joint_state_publisher_gui" default="false"/>                
+        <arg name = "use_joint_state_publisher_gui" default="false"/>
+        <arg name = "rviz_config_file" default = "$(find navvis_bag)/config/$(arg rviz_config_file)"/>
     </include>
 
-    <arg name="use_sim_time"/>
+    <node pkg = "rosbag" type = "play" name = "rosbag_play" args = "--clock $(find navvis_bag)/bag_files/$(arg file) /tf_trajectory:=/tf"/>
     
 
 
