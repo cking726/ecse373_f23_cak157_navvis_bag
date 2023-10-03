@@ -15,7 +15,6 @@
     </include>
 
     <node pkg = "rosbag" type = "play" name = "rosbag_play" args = "--clock $(find navvis_bag)/bag_files/$(arg file) /tf_trajectory:=/tf"/>
-    
-
+    <node if = "$(eval arg('rviz_config_file') == 'map_config.rviz')" pkg = "map_server" type = "map_server" name = "glennan5_map" args="$(find maps_glennan)/maps/glennan5_map.yaml"/>
 
 </launch>
