@@ -9,5 +9,8 @@
         <arg name="use_joint_state_publisher_gui" default="false"/>                
     </include>
 
+    <arg name="use_sim_time"/>
+    
+
 
 </launch>
